@@ -18,6 +18,10 @@ opts = OptionParser.new do |opts|
 	opts.on("-o","--only FILTER", "Only branches that match FILTER will be included") do |only_filter|
 		conf[:only_filter] = only_filter
 	end
+	opts.on("-e","--exclude branch1,branch2,branchN", Array, "Explicitly exclude branches") do |branches|
+		conf[:excludes] = branches
+	end
+
   opts.on("-v", "--version", "Shows version") do
     puts GitCleanup::VERSION
     exit
