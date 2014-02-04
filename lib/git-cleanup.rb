@@ -12,8 +12,12 @@ end
 
 class GitCleanup
   def self.run(options = {})
+    if options[:force]
+      Helper.prompt = false
+    end
+
     repo = Grit::Repo.new(Dir.pwd)
-    
+
     master = repo.heads.find { |h| h.name == 'master' }
 
     self.prune(repo)
